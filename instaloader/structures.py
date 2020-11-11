@@ -1469,11 +1469,12 @@ def save_structure_to_file(structure: JsonExportable, filename: str) -> None:
                       'instaloader': {'version': __version__, 'node_type': structure.__class__.__name__}}
     compress = filename.endswith('.xz')
     if compress:
-        with lzma.open(filename, 'wt', check=lzma.CHECK_NONE) as fp:
-            json.dump(json_structure, fp=fp, separators=(',', ':'))
+        with lzma.open(filename, 'wt', check=lzma.CHECK_NONE, encoding='utf-8') as fp:
+            json.dump(json_structure, fp=fp, separators=(',', ':'), ensure_ascii=False)
     else:
-        with open(filename, 'wt') as fp:
-            json.dump(json_structure, fp=fp, indent=4, sort_keys=True)
+        with open(filename, 'wt', encoding='utf-8') as fp:
+            json.dump(json_structure, fp=fp, indent=4, sort_keys=True, ensure_ascii=False)
+
 
 
 def load_structure_from_file(context: InstaloaderContext, filename: str) -> JsonExportable:

@@ -311,8 +311,9 @@ class Instaloader:
         if comments:
             comments = get_unique_comments(comments, combine_answers=True)
             answer_ids = set(int(answer['id']) for comment in comments for answer in comment.get('answers', []))
-            with open(filename, 'w') as file:
-                file.write(json.dumps(list(filter(lambda t: int(t['id']) not in answer_ids, comments)), indent=4))
+            with open(filename, 'wt', encoding='utf-8') as file:                
+                comments = {'comments': list(filter(lambda t: int(t['id']) not in answer_ids, comments))}                  
+                json.dump(comments, fp=file, indent=4, sort_keys=True, ensure_ascii=False)
             self.context.log('comments', end=' ', flush=True)
 
     def save_caption(self, filename: str, mtime: datetime, caption: str) -> None:

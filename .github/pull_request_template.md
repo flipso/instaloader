@@ -1,4 +1,4 @@
-
+See README.rst in root 
 
 <!--
 Please describe:
