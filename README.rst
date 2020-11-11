@@ -21,12 +21,13 @@ Flipso
 Roadmap
 ----------
 - Fixing encoding Issues ✔ 5b3b30d69b1b21563cef9daff1f5f0b7f57d9040
-- Adding new options for followers/followee ✔
+- Adding new options for followers/followee ✔ 44e9c01eb3dc37d031ab000a83d233ef2802721c
    1. First i changed the behavior to only download the followers/followees profile and not download everything recursively because that leads very fast to overheat. In my eyes the old behavior is not good because there is no USE-Case at all
    2. Your now able to download followers by adding @ behind username
    3. Your now able to download followees & followers at once by combining prefix and suffix for example @username@
-- Refactor these options to remove the code redundancy ❌
-- Dump comments with structures.py ❌
+- Refactor these options to remove the code redundancy ❌ 
+> Asked for help at https://github.com/instaloader/instaloader/issues/866#issue-741050597
+- Dump comments via structures.py ✔
 - Parsing JSON files into one file ❌
 
 

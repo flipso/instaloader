@@ -1452,7 +1452,8 @@ class TopSearchResults:
         return self._searchstring
 
 
-JsonExportable = Union[Post, Profile, StoryItem, Hashtag, FrozenNodeIterator]
+#JsonExportable = Union[Post, Profile, StoryItem, Hashtag, FrozenNodeIterator]
+JsonExportable = Union[Post, Profile, StoryItem, Hashtag, PostComment, FrozenNodeIterator]
 
 
 def save_structure_to_file(structure: JsonExportable, filename: str) -> None:
@@ -1465,7 +1466,12 @@ def save_structure_to_file(structure: JsonExportable, filename: str) -> None:
     :param structure: :class:`Post`, :class:`Profile`, :class:`StoryItem` or :class:`Hashtag`
     :param filename: Filename, ends in '.json' or '.json.xz'
     """
-    json_structure = {'node': structure._asdict(),
+
+    #if not comment than to dic
+    if not type(structure) == dict:
+        structure = structure._asdict()
+
+    json_structure = {'node': structure,
                       'instaloader': {'version': __version__, 'node_type': structure.__class__.__name__}}
     compress = filename.endswith('.xz')
     if compress:

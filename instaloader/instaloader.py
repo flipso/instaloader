@@ -301,19 +301,14 @@ class Instaloader:
                             combined_answers.extend(y['answers'])
                         unique_comments_list[-1]['answers'] = get_unique_comments(combined_answers)
             return unique_comments_list
-        filename += '_comments.json'
-        try:
-            with open(filename) as fp:
-                comments = json.load(fp)
-        except (FileNotFoundError, json.decoder.JSONDecodeError):
-            comments = list()
+        filename += '_comments'        
+        comments = list()
         comments.extend(_postcomment_asdict(comment) for comment in post.get_comments())
         if comments:
             comments = get_unique_comments(comments, combine_answers=True)
             answer_ids = set(int(answer['id']) for comment in comments for answer in comment.get('answers', []))
-            with open(filename, 'wt', encoding='utf-8') as file:                
-                comments = {'comments': list(filter(lambda t: int(t['id']) not in answer_ids, comments))}                  
-                json.dump(comments, fp=file, indent=4, sort_keys=True, ensure_ascii=False)
+            comments = {'comments': list(filter(lambda t: int(t['id']) not in answer_ids, comments))}   
+            self.save_metadata_json(filename, comments)
             self.context.log('comments', end=' ', flush=True)
 
     def save_caption(self, filename: str, mtime: datetime, caption: str) -> None:
