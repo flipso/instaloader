@@ -1,4 +1,4 @@
-﻿Hey Folks,
+Hey Folks,
 
 this is a fork of https://github.com/instaloader/instaloader
 
