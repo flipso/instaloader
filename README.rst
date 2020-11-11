@@ -4,7 +4,7 @@ this is a fork of https://github.com/instaloader/instaloader
 
 I would ask to become contributer but im not familiar with these GIT stuff. I come from the Subversion world and im learning GIT rn.
 
----
+----------
 
 The code is a good starting point for my data mining plans. However, testing has already shown that some serious beginner mistakes have been made.
 
@@ -20,7 +20,7 @@ Cheers,
 Flipso
 
 Roadmap
----
+----------
 - Fixing encoding Issues ✔
 - Adding new options for followers/followee ❌
 - Dump comments with structures.py ❌
