@@ -1,10 +1,9 @@
 ﻿Hey Folks,
-
 this is a fork of https://github.com/instaloader/instaloader
 
 I would ask to become contributer but im not familiar with these GIT stuff. I come from the Subversion world and im learning GIT rn.
 
----
+----------
 
 The code is a good starting point for my data mining plans. However, testing has already shown that some serious beginner mistakes have been made.
 
@@ -20,9 +19,13 @@ Cheers,
 Flipso
 
 Roadmap
----
-- Fixing encoding Issues ✔
-- Adding new options for followers/followee ❌
+----------
+- Fixing encoding Issues ✔ 5b3b30d69b1b21563cef9daff1f5f0b7f57d9040
+- Adding new options for followers/followee ✔
+   1. First i changed the behavior to only download the followers/followees profile and not download everything recursively because that leads very fast to overheat. In my eyes the old behavior is not good because there is no USE-Case at all
+   2. Your now able to download followers by adding @ behind username
+   3. Your now able to download followees & followers at once by combining prefix and suffix for example @username@
+- Refactor these options to remove the code redundancy ❌
 - Dump comments with structures.py ❌
 - Parsing JSON files into one file ❌
 
@@ -38,5 +41,4 @@ subsidiaries. This is an independent and unofficial project. Use at your own ris
 Instaloader is licensed under an MIT license. Refer to ``LICENSE`` file for more information.
 
 .. disclaimer-end
-
 

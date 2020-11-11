@@ -139,12 +139,37 @@ def _main(instaloader: Instaloader, targetlist: List[str],
             # strip '/' characters to be more shell-autocompletion-friendly
             target = target.rstrip('/')
             with instaloader.context.error_catcher(target):
-                if re.match(r"^@[A-Za-z0-9._]+$", target):
+                if re.match(r"^@[A-Za-z0-9._]+@$", target):
+                    instaloader.context.log("Retrieving followees of %s..." % target[1:-1])
+                    profile = Profile.from_username(instaloader.context, target[1:-1])
+                    for followee in profile.get_followees():
+                        json_filename = os.path.join(instaloader.dirname_pattern.format(profile=followee.username, target=profile.username),
+                                                     'following', 
+                                                     '{0}_{1}'.format("profile", followee.userid))
+                        instaloader.save_metadata_json(json_filename, followee)
+
+                    instaloader.context.log("Retrieving followers of %s..." % target[1:-1])
+                    for follower in profile.get_followers():
+                        json_filename = os.path.join(instaloader.dirname_pattern.format(profile=follower.username, target=profile.username),
+                                                     'follower', 
+                                                     '{0}_{1}'.format("profile", follower.userid))
+                        instaloader.save_metadata_json(json_filename, follower)
+                elif re.match(r"^@[A-Za-z0-9._]+$", target):
                     instaloader.context.log("Retrieving followees of %s..." % target[1:])
                     profile = Profile.from_username(instaloader.context, target[1:])
                     for followee in profile.get_followees():
-                        instaloader.save_profile_id(followee)
-                        profiles.add(followee)
+                        json_filename = os.path.join(instaloader.dirname_pattern.format(profile=followee.username, target=profile.username),
+                                                     'following', 
+                                                     '{0}_{1}'.format(followee.username, followee.userid))
+                        instaloader.save_metadata_json(json_filename, followee)
+                elif re.match(r"^[A-Za-z0-9._]+@$", target):
+                    instaloader.context.log("Retrieving followers of %s..." % target[:-1])
+                    profile = Profile.from_username(instaloader.context, target[:-1])
+                    for follower in profile.get_followers():
+                        json_filename = os.path.join(instaloader.dirname_pattern.format(profile=follower.username, target=profile.username),
+                                                     'follower', 
+                                                     '{0}_{1}'.format(follower.username, follower.userid))
+                        instaloader.save_metadata_json(json_filename, follower)
                 elif re.match(r"^#\w+$", target):
                     instaloader.download_hashtag(hashtag=target[1:], max_count=max_count, fast_update=fast_update,
                                                  post_filter=post_filter,
