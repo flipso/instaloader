@@ -26,7 +26,8 @@ Roadmap
    2. Your now able to download followers by adding @ behind username
    3. Your now able to download followees & followers at once by combining prefix and suffix for example @username@
 - Refactor these options to remove the code redundancy ❌ 
-> Asked for help at https://github.com/instaloader/instaloader/issues/866#issue-741050597
+--> Asked for help at https://github.com/instaloader/instaloader/issues/866#issue-741050597
+
 - Dump comments via structures.py ✔
 - Parsing JSON files into one file ❌
 > after a closer look at the code i come to the conclusion that the task is too time consuming or you would have to mess up too much, so i won't develop it. my parser just has to pull the files one by one and then everything is fine
