@@ -29,7 +29,10 @@ Roadmap
 > Asked for help at https://github.com/instaloader/instaloader/issues/866#issue-741050597
 - Dump comments via structures.py ✔
 - Parsing JSON files into one file ❌
+> after a closer look at the code i come to the conclusion that the task is too time consuming or you would have to mess up too much, so i won't develop it. my parser just has to pull the files one by one and then everything is fine
 
+- Implement TOR (For example if Rate Limit > 300 seconds than new TOR identity to avoid longer waiting times)
+ > i will develop this functionality at a different time because i have to turn to other components. You are welcome to take over the development. If so please let me know
 
 Disclaimer
 ----------
